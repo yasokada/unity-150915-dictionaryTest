@@ -9,7 +9,7 @@ public class dicTest : MonoBehaviour {
 
 		myDic.Add (3, 1415);
 		myDic.Add (2, 7182);
-		myDic.Add (3, 1234);
+//		myDic.Add (3, 1234);
 
 		foreach (KeyValuePair<int, int> pair in myDic) {
 			Debug.Log(pair.Key + " : " + pair.Value);
