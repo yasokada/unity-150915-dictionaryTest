@@ -4,14 +4,16 @@ using System.Collections.Generic; // for List, Dictionary
 
 
 /*
+ * v0.2 2015/09/17
+ *   - add findElementWithKey() to respond with randomly selected element
  * v0.1 2015/09/17
  *   - add Dictinary<List> and show all the element for (key==hello)
  */
 
 public class dicListTest : MonoBehaviour {
 
-	void displayAllElementWithKey(ref Dictionary<string, 
-	       List<string>> myDic, string searchKey) {
+	void displayAllElementWithKey(
+		ref Dictionary<string, List<string>> myDic, string searchKey) {
 		foreach(KeyValuePair<string, List<string>> pair in myDic) {
 			if (pair.Key != searchKey) {
 				continue;
@@ -21,6 +23,15 @@ public class dicListTest : MonoBehaviour {
 				Debug.Log("res:" + element);
 			}
 		}
+	}
+
+	void findElementWithKey(
+		ref Dictionary<string, List<string>> myDic, string searchKey) {
+
+		List<string> resList;
+		resList = myDic [searchKey];
+		int pos = Random.Range (0, resList.Count);
+		Debug.Log ("res:" + resList [pos]);
 	}
 
 	void Test_diclist() {
@@ -44,7 +55,10 @@ public class dicListTest : MonoBehaviour {
 		res2ls.Add ("Je nous peut pas parler Francaise.");
 		myDic.Add (keystr, res2ls);
 
-		displayAllElementWithKey (ref myDic, /* searchKey=*/"hello");
+//		displayAllElementWithKey (ref myDic, /* searchKey=*/"hello");
+		for (int loop=0; loop<10; loop++) {
+			findElementWithKey (ref myDic, /* searchKey=*/"hello");
+		}
 	}
 
 	void Start () {
